@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reitkonzept — Hotel Sonnwies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6ef;
+    --cream-warm: #f3ece0;
+    --paper: #ffffff;
+    --ink: #2b2520;
+    --ink-soft: #5c534b;
+    --ink-mute: #8a8074;
+    --burgundy: #6b3a2e;
+    --burgundy-deep: #4a261d;
+    --gold: #b8946a;
+    --line: #d8cfbf;
+    --line-soft: #e8e0d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.65;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .display {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .micro {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--ink-mute);
+  }
+
+  .small-caps {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--burgundy);
+  }
+
+  /* ===== LAYOUT PRIMITIVES ===== */
+  .page {
+    min-height: 100vh;
+    padding: 80px 7vw;
+    position: relative;
+  }
+
+  .page--cream { background: var(--cream); }
+  .page--paper { background: var(--paper); }
+  .page--warm  { background: var(--cream-warm); }
+  .page--ink   { background: var(--burgundy-deep); color: var(--cream); }
+
+  .page-frame {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--ink-mute);
+  }
+
+  .page--ink .page-frame {
+    border-color: rgba(250, 246, 239, 0.2);
+    color: rgba(250, 246, 239, 0.6);
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    background: var(--cream);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 60px 7vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--cream-warm) 0%, transparent 65%);
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .cover__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover__logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 56px;
+  }
+
+  .cover__logo-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .cover__logo-sub {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+
+  .cover__top-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover__meta {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    line-height: 2;
+  }
+
+  .cover__center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+    padding-top: 60px;
+  }
+
+  .cover__eyebrow {
+    margin-bottom: 0;
+    color: var(--burgundy);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .cover__eyebrow::before {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--burgundy);
+  }
+
+  .cover__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+
+  .cover__title em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 300;
+  }
+
+  .cover__subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-top: 30px;
+  }
+
+  .cover__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--ink-mute);
+  }
+
+  .cover__bottom-right {
+    text-align: right;
+  }
+
+  .cover__bottom strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 6px;
+    letter-spacing: 0.22em;
+  }
+
+  /* ===== EDITORIAL HEADERS ===== */
+  .chapter-mark {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .chapter-mark__num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--burgundy);
+  }
+
+  .chapter-mark__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+  }
+
+  .h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+
+  .h1 em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  .page--ink .h1 { color: var(--cream); }
+  .page--ink .h1 em { color: var(--gold); }
+
+  .h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .h2 em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  .page--ink .h2 { color: var(--cream); }
+  .page--ink .h2 em { color: var(--gold); }
+
+  .h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.005em;
+  }
+
+  .h3 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 400;
+  }
+
+  /* ===== TEXT ===== */
+  .lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-bottom: 60px;
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 720px;
+  }
+
+  .body-text + .body-text {
+    margin-top: 18px;
+  }
+
+  .page--ink .body-text { color: rgba(250, 246, 239, 0.88); }
+
+  .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.3;
+    color: var(--ink);
+    max-width: 880px;
+    margin: 60px 0;
+    padding-left: 40px;
+    border-left: 2px solid var(--burgundy);
+    letter-spacing: -0.005em;
+  }
+
+  .quote-attr {
+    display: block;
+    margin-top: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+  }
+
+  /* ===== INTRO LAYOUT ===== */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .intro-grid__side {
+    border-left: 1px solid var(--line);
+    padding-left: 40px;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--burgundy);
+    padding: 6px 14px;
+    border: 1px solid var(--burgundy);
+    margin-bottom: 30px;
+    border-radius: 100px;
+  }
+
+  /* ===== VALUES ===== */
+  .values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    margin-top: 80px;
+  }
+
+  .value {
+    border-top: 1px solid var(--burgundy);
+    padding-top: 28px;
+  }
+
+  .value__name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+  }
+
+  .value__name em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--burgundy);
+  }
+
+  .value__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ===== PILLARS ===== */
+  .pillar {
+    padding: 50px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .pillar:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pillar__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--burgundy);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pillar__eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--burgundy);
+  }
+
+  .pillar__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .pillar__title em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  .pillar__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+
+  /* ===== AGE GROUPS ===== */
+  .age-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .age {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+
+  .age:first-child { border-top: 1px solid var(--line); }
+
+  .age__range {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--burgundy);
+    letter-spacing: -0.01em;
+  }
+
+  .age__name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+
+  .age__desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ===== KNOWLEDGE BULLETS ===== */
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 60px;
+    margin-top: 20px;
+  }
+
+  .knowledge-item {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+
+  .knowledge-item__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+
+  .knowledge-item__title em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 400;
+  }
+
+  .knowledge-item__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ===== SIGNATURE ===== */
+  .signature {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 60px;
+  }
+
+  .signature-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+    transition: border-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .signature-card:hover {
+    border-color: var(--burgundy);
+    transform: translateY(-2px);
+  }
+
+  .signature-card__icon {
+    position: absolute;
+    top: 36px;
+    right: 36px;
+    width: 32px;
+    height: 32px;
+    color: var(--gold);
+  }
+
+  .signature-card__cat {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+
+  .signature-card__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    max-width: 90%;
+  }
+
+  .signature-card__title em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+
+  .signature-card__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ===== SEASONS ===== */
+  .seasons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(250, 246, 239, 0.2);
+    padding-top: 50px;
+  }
+
+  .season {
+    color: var(--cream);
+  }
+
+  .season__icon {
+    width: 36px;
+    height: 36px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+    stroke-width: 1.6;
+  }
+
+  .season__name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .season__text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(250, 246, 239, 0.85);
+  }
+
+  /* ===== CLOSING ===== */
+  .closing {
+    text-align: center;
+    padding: 100px 0;
+  }
+
+  .closing__quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.25;
+    color: var(--ink);
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    letter-spacing: -0.01em;
+  }
+
+  .closing__quote em {
+    color: var(--burgundy);
+  }
+
+  .closing__sig {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+  }
+
+  .closing__sig strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-top: 6px;
+    letter-spacing: 0.22em;
+  }
+
+  .ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--burgundy);
+    margin: 0 auto 50px;
+    position: relative;
+  }
+
+  .ornament::before, .ornament::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .ornament::before { left: -14px; }
+  .ornament::after { right: -14px; }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.6s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .page { padding: 60px 6vw; }
+    .intro-grid { grid-template-columns: 1fr; gap: 50px; }
+    .intro-grid__side { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
+    .values { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+    .pillar { grid-template-columns: 1fr; gap: 24px; }
+    .signature { grid-template-columns: 1fr; }
+    .seasons { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .knowledge-grid { grid-template-columns: 1fr; }
+    .age { grid-template-columns: 100px 1fr; gap: 24px; }
+    .cover__top { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .cover__meta { text-align: left; }
+    .cover__bottom { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .cover__bottom-right { text-align: left; }
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-size: 14px;
+      background: white;
+    }
+
+    .page {
+      min-height: 277mm;
+      padding: 22mm 22mm;
+      page-break-before: always;
+      box-sizing: border-box;
+    }
+
+    .cover {
+      min-height: 277mm;
+      height: 277mm;
+      padding: 35mm 30mm;
+    }
+
+    /* Schluss-Sektion bleibt bei ihrer Page */
+
+    .cover__title {
+      font-size: 84px !important;
+    }
+
+    .cover__subtitle {
+      font-size: 21px !important;
+    }
+
+    /* Animationen aus */
+    .fade-in {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    .signature-card:hover {
+      transform: none;
+      border-color: var(--line);
+    }
+
+    /* Layouts im PDF erzwingen — sonst klappen sie auf eine Spalte */
+    .values {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 28px !important;
+      margin-top: 50px !important;
+    }
+
+    .seasons {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 28px !important;
+    }
+
+    .knowledge-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 24px 32px !important;
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 50px !important;
+      margin-top: 40px !important;
+    }
+
+    .signature {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      margin-top: 30px !important;
+    }
+
+    .signature-card {
+      padding: 22px 24px;
+    }
+
+    .signature-card__title {
+      font-size: 22px !important;
+    }
+
+    .signature-card__text {
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+
+    .signature-card__icon {
+      top: 22px !important;
+      right: 26px !important;
+      width: 24px !important;
+      height: 24px !important;
+    }
+
+    .signature-card__cat {
+      font-size: 9px !important;
+      margin-bottom: 12px !important;
+    }
+
+    /* Headlines kleiner */
+    .h1 {
+      font-size: 38px !important;
+      margin-bottom: 18px !important;
+    }
+
+    .chapter-mark {
+      margin-bottom: 22px !important;
+    }
+
+    .chapter-mark__num {
+      font-size: 48px !important;
+    }
+
+    /* Lede kompakter */
+    .lede {
+      font-size: 16px !important;
+      margin-bottom: 20px !important;
+    }
+
+    /* Intro-Grid */
+    .intro-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 40px !important;
+      margin-top: 30px !important;
+    }
+
+    .intro-grid .body-text {
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+    }
+
+    .intro-grid__side {
+      padding-left: 28px !important;
+    }
+
+    /* Säulen kompakter */
+    .pillar {
+      padding: 28px 0 !important;
+    }
+
+    .pillar__title {
+      font-size: 28px !important;
+    }
+
+    .pillar__lede {
+      font-size: 16px !important;
+      margin-bottom: 18px !important;
+    }
+
+    /* Page-Frame nicht so groß */
+    .page-frame {
+      margin-bottom: 22px !important;
+      padding-top: 14px !important;
+    }
+
+    /* Seitenumbrüche bei Atomic-Einheiten vermeiden */
+    .signature-card,
+    .value,
+    .season,
+    .knowledge-item,
+    .age {
+      page-break-inside: avoid;
+    }
+
+    /* Säule erstes Kind direkt nach Chapter-Marke nicht umbrechen */
+    .pillar:first-of-type {
+      page-break-before: avoid;
+    }
+
+    /* Closing-Sektion zentriert auch im Print */
+    .closing {
+      padding: 80px 0 !important;
+    }
+
+    .closing__quote {
+      font-size: 32px !important;
+    }
+
+    /* Farben in PDF erhalten */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<section class="cover">
+  <header class="cover__top fade-in">
+    <div class="cover__top-left">
+      <div class="cover__logo">
+        <span class="cover__logo-main">SONNWIES</span>
+        <span class="cover__logo-sub">DOLOMITES</span>
+      </div>
+      <div class="cover__eyebrow">Reitkonzept</div>
+    </div>
+    <div class="cover__meta">
+      Lüsen · Südtirol<br>
+      Vorgespräch · 7. Mai 2026
+    </div>
+  </header>
+
+  <div class="cover__center fade-in delay-2">
+    <h1 class="cover__title">
+      Reiten<br>
+      als <em>Erlebnis</em>,<br>
+      das in <em>Erinnerung</em> bleibt.
+    </h1>
+    <p class="cover__subtitle">
+      Ein Konzept für die neue Reiterhalle des Hotel Sonnwies — naturnah, kindgerecht, beziehungsorientiert.
+    </p>
+  </div>
+
+  <footer class="cover__bottom fade-in delay-4">
+    <div>
+      Vorgelegt zum Persönlichen Gespräch
+    </div>
+    <div class="cover__bottom-right">
+      Sara Maria Kuhlmann
+    </div>
+  </footer>
+</section>
+
+<!-- ===== EINSTIEG / EXEC SUMMARY ===== -->
+<section class="page page--paper">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>I · Worum es geht</span>
+  </div>
+
+  <div class="chapter-mark">
+    <span class="chapter-mark__num">I</span>
+    <span class="chapter-mark__label">Auftakt</span>
+  </div>
+
+  <h2 class="h1">
+    Eine Reiterhalle entsteht.<br>
+    <em>Sie ist nicht der Anfang.</em>
+  </h2>
+
+  <p class="lede">
+    Pony-Koppel, Isländer, Ferdis Bauernhof, tägliches Ponyreiten — das Sonnwies hat seinen Pferdeort längst. Die neue Halle ist die Bühne, auf die das, was schon lebt, aufsteigen darf.
+  </p>
+
+  <div class="intro-grid">
+    <div>
+      <div class="pill">Ausgangspunkt</div>
+      <p class="body-text">
+        Beim Sonnwies geht es im Pferdeangebot nicht um Turniervorbereitung. Es geht um etwas Stilleres und gleichzeitig Stärkeres: um Beziehung zum Tier, um Naturverbindung, um den Moment, in dem ein Kind zum ersten Mal versteht, dass dieses lebendige, große Wesen ihm vertraut.
+      </p>
+      <p class="body-text">
+        Genau dort — zwischen Pferd, Kind und Familie — soll das Reitkonzept ansetzen. Nicht als Reitschule auf Hotelgelände, sondern als Erweiterung der Sonnwies-Welt, in der die Halle, der Stall und die Reiterlounge zu Räumen werden, die zum Hotel gehören wie der Bauernhof oder das SPA.
+      </p>
+    </div>
+
+    <div class="intro-grid__side">
+      <div class="pill">Drei Sätze</div>
+      <p class="body-text" style="font-size: 17px; margin-bottom: 18px;">
+        Das Reitprogramm ist eine Erweiterung des Bauernhofs, kein separater Reitstall.
+      </p>
+      <p class="body-text" style="font-size: 17px; margin-bottom: 18px;">
+        Der Anspruch ist, dass jedes Kind den Stall mit einer Erinnerung verlässt — nicht mit einer Note.
+      </p>
+      <p class="body-text" style="font-size: 17px;">
+        Sicherheit, Naturverbindung und ein respektvoller Umgang mit dem Pferd sind nicht verhandelbar. Alles andere ist Spielwiese.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WERTE ===== -->
+<section class="page page--cream">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>II · Werte</span>
+  </div>
+
+  <div class="chapter-mark">
+    <span class="chapter-mark__num">II</span>
+    <span class="chapter-mark__label">Die vier Werte des Hauses, übersetzt ins Reitprogramm</span>
+  </div>
+
+  <h2 class="h1">
+    Was das Sonnwies <em>auszeichnet</em>,<br>
+    soll auch das Pferd <em>auszeichnen</em>.
+  </h2>
+
+  <p class="lede">
+    Individualität, Wachstum, Gastgeben, Gemeinschaft — die vier Werte, die in jedem Detail dieses Hauses spürbar sind. Ein Reitprogramm, das hier passt, lebt sie ebenfalls.
+  </p>
+
+  <div class="values">
+    <div class="value">
+      <h3 class="value__name"><em>Individualität</em></h3>
+      <p class="value__text">
+        Kein Schema F. Jede Stunde wird auf das Kind, sein Niveau, seinen Tag, sein Pferd zugeschnitten. Im Familienkontext ist das wichtiger als jeder Lehrplan.
+      </p>
+    </div>
+
+    <div class="value">
+      <h3 class="value__name"><em>Wachstum</em></h3>
+      <p class="value__text">
+        Das Pferd als Lehrer für Mut, Geduld, Verantwortung. Erwachsene und Kinder dürfen über sich hinauswachsen, im eigenen Tempo, ohne Druck von außen.
+      </p>
+    </div>
+
+    <div class="value">
+      <h3 class="value__name"><em>Gastgeben</em></h3>
+      <p class="value__text">
+        Reiterlounge und Stall sind Gastraum — mit derselben Selbstverständlichkeit, Ruhe und Wärme wie der Rest des Hauses. Der Gast spürt: Ich bin hier willkommen.
+      </p>
+    </div>
+
+    <div class="value">
+      <h3 class="value__name"><em>Gemeinschaft</em></h3>
+      <p class="value__text">
+        Familien erleben Pferd gemeinsam. Eltern werden eingeladen, nicht ausgeschlossen. Das Kind baut über die Woche eine echte Beziehung zu seinem Pony auf.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DREI SÄULEN ===== -->
+<section class="page page--paper">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>III · Säulen</span>
+  </div>
+
+  <div class="chapter-mark">
+    <span class="chapter-mark__num">III</span>
+    <span class="chapter-mark__label">Drei Säulen, ein Programm</span>
+  </div>
+
+  <h2 class="h1">
+    Reiten. Wissen. <em>Begegnung.</em>
+  </h2>
+
+  <p class="lede">
+    Ein Reitprogramm besteht nicht nur aus Reitstunden. Diese drei Säulen tragen das Angebot — gemeinsam, nicht getrennt.
+  </p>
+
+  <!-- SÄULE 1 -->
+  <div class="pillar">
+    <div class="pillar__eyebrow">Säule eins</div>
+    <h3 class="pillar__title">Reiterleben für <em>Kinder</em></h3>
+      <p class="pillar__lede">
+        Aufgebaut nach den Sonnwies-Altersstufen, damit das Reitangebot nahtlos in die bestehende Kinderwelt greift.
+      </p>
+
+      <div class="age-list">
+        <div class="age">
+          <div class="age__range">0 – 3</div>
+          <div>
+            <div class="age__name">Pony-Begegnung</div>
+            <p class="age__desc">Kein Reiten. Putzen, füttern, riechen, anfassen. Begleitet, sanft, mit Eltern. 15–20 Minuten.</p>
+          </div>
+        </div>
+        <div class="age">
+          <div class="age__range">3 – 7</div>
+          <div>
+            <div class="age__name">Pony-Freunde-Programm</div>
+            <p class="age__desc">Über die Urlaubswoche begleitet jedes Kind „sein" Pony — putzen, führen, einfache Übungen an der Longe, kleine Spiele. Am Ende der Woche kleines Abschluss-Ritual.</p>
+          </div>
+        </div>
+        <div class="age">
+          <div class="age__range">7 – 12</div>
+          <div>
+            <div class="age__name">Reiterlebnis Sonnwies</div>
+            <p class="age__desc">Reitstunden in der Halle und geführte Ausritte in die Lüsner Wiesen. Sitzschulung, Gleichgewicht, je nach Niveau erste Galopperfahrungen. Optional: Dolomiten-Ritt mit Picknick.</p>
+          </div>
+        </div>
+        <div class="age">
+          <div class="age__range">12 +</div>
+          <div>
+            <div class="age__name">Aufbauend &amp; individuell</div>
+            <p class="age__desc">Einzelstunden, gemischte Familienritte, längere Ausritte. Für Wiedereinsteiger und ambitionierte Reiter gleichermaßen geeignet.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-text" style="margin-top: 30px; font-size: 17px; font-style: italic; color: var(--burgundy);">
+        Das Format der Stunden ist bewusst klein. Maximal 3–4 Kinder pro Gruppenstunde, Privatstunden auf Wunsch. Premium-Anspruch und Sicherheit — beides nicht verhandelbar.
+      </p>
+  </div>
+
+  <!-- SÄULE 2 -->
+  <div class="pillar">
+    <div class="pillar__eyebrow">Säule zwei</div>
+    <h3 class="pillar__title">Wissen rund <em>ums Pferd</em></h3>
+    <p class="pillar__lede">
+      Die Reiterlounge wird nicht nur Aufenthaltsraum, sondern Lern- und Erinnerungsort. Niedrige Schwelle, hohe Tiefe.
+    </p>
+
+    <div class="knowledge-grid">
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Pferde-Sprechstunde</em></h4>
+        <p class="knowledge-item__text">30–45 Minuten, einmal wöchentlich. Themen wie „Wie Pferde fühlen", „Was Hufe erzählen", „Warum Pferde Herdentiere sind". Niederschwellig, mit Anschauungsmaterial.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Stalltour</em></h4>
+        <p class="knowledge-item__text">Kuratierte Führung durch Halle und Stall. Nicht „hier ist alles", sondern eine Geschichte: Tagesablauf eines Pferdes, Pflegeritual, warum unsere Pferde gerade was machen.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Mini-Workshops für Kinder</em></h4>
+        <p class="knowledge-item__text">Putzen lernen, Hufe auskratzen, Sattel und Trense kennenlernen. 20–30 Minuten, in die Kinderanimation integrierbar.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Pferdeflüsterer-Stunde</em></h4>
+        <p class="knowledge-item__text">Älteren Kindern und Erwachsenen die Grundlagen der Bodenarbeit zeigen. Vertrauen, Körpersprache, Distanz — auch für Nicht-Reiter ein starkes Erlebnis.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Reiterlounge als Galerie</em></h4>
+        <p class="knowledge-item__text">Steckbriefe der Pferde an den Wänden — mit Geschichte, Charakter, Lieblings-Marotten. Kinder identifizieren sich sofort, Eltern lesen mit.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Lerntafel</em></h4>
+        <p class="knowledge-item__text">Eine kleine, gestaltete Tafel in der Lounge mit dem Wissen der Woche. Wechselt regelmäßig, wird zum Gesprächsanlass beim Frühstück.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SÄULE 3 -->
+  <div class="pillar">
+    <div class="pillar__eyebrow">Säule drei</div>
+    <h3 class="pillar__title">Begegnungs- und <em>Achtsamkeitsangebote</em></h3>
+    <p class="pillar__lede">
+      Pferdegestützte Erlebnisse jenseits des Reitens — sanft, achtsam, für die ganze Familie. Mit dem Pferd präsent sein, ohne Leistung.
+    </p>
+
+    <div class="knowledge-grid">
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Pferdegestützte Achtsamkeit</em></h4>
+        <p class="knowledge-item__text">Geführte Begegnungseinheiten mit Pferd. Atmen, präsent sein, das Tier wahrnehmen. Passt nahtlos zum Wellness-Angebot des Hauses und ist ein klares Sonnwies-Signature-Produkt.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Coaching für Familien</em></h4>
+        <p class="knowledge-item__text">Kleine Übungen mit Pferd, die Vertrauen, Kommunikation und Zusammenarbeit zwischen Eltern und Kind sichtbar machen. Kein Therapie-Setting, sondern Erlebnis.</p>
+      </div>
+      <div class="knowledge-item">
+        <h4 class="knowledge-item__title"><em>Mittelfristig: pferdegestützte Therapie</em></h4>
+        <p class="knowledge-item__text">Mit entsprechender Weiterbildung könnte das Sonnwies eine Nische besetzen, die kein anderes Familienresort der Region bisher bedient. Geplant in den ersten zwei Jahren.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIGNATURE ===== -->
+<section class="page page--warm">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>IV · Signature-Erlebnisse</span>
+  </div>
+
+  <div class="chapter-mark">
+    <span class="chapter-mark__num">IV</span>
+    <span class="chapter-mark__label">Vier Erlebnisse, die nur hier möglich sind</span>
+  </div>
+
+  <h2 class="h1">
+    Was das Sonnwies <em>einzigartig</em> macht.
+  </h2>
+
+  <p class="lede">
+    Diese vier Erlebnisse sind so konzipiert, dass sie nur im Sonnwies-Kontext funktionieren — und nicht in Brixen, am Quellenhof oder bei Tuberis nachgemacht werden können.
+  </p>
+
+  <div class="signature">
+    <div class="signature-card">
+      <svg class="signature-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 4 L9 7"/>
+        <path d="M23 4 L23 7"/>
+        <path d="M9 7 C 7 11, 6 14, 6 18 C 6 23, 10 28, 16 28 C 22 28, 26 23, 26 18 C 26 14, 25 11, 23 7"/>
+        <circle cx="9" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+        <circle cx="9" cy="18" r="0.9" fill="currentColor" stroke="none"/>
+        <circle cx="11" cy="23" r="0.9" fill="currentColor" stroke="none"/>
+        <circle cx="23" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+        <circle cx="23" cy="18" r="0.9" fill="currentColor" stroke="none"/>
+        <circle cx="21" cy="23" r="0.9" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="signature-card__cat">Bindung</div>
+      <h3 class="signature-card__title"><em>Mein Pony</em><br>für die Woche</h3>
+      <p class="signature-card__text">
+        Jedes Kind im 3–7-Programm bekommt sein Patenpony für den Aufenthalt. Über die Woche vertieft sich die Beziehung — putzen, füttern, reiten. Am Abreisetag erhält das Kind ein persönliches Foto-Steckbrief-Set seines Ponys. Bindung, Wiederkehr-Anreiz, emotionale Erinnerung.
+      </p>
+    </div>
+
+    <div class="signature-card">
+      <svg class="signature-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 4l-4 7h2l-3 6h2l-3 6h12l-3-6h2l-3-6h2l-4-7z"/>
+        <path d="M11 23v5"/>
+        <path d="M22 9l-2 4h1l-2 4h1l-2 4h8l-2-4h1l-2-4h1l-2-4z"/>
+        <path d="M22 21v7"/>
+      </svg>
+      <div class="signature-card__cat">Natur</div>
+      <h3 class="signature-card__title"><em>Sonnwies Forest</em><br>Ride</h3>
+      <p class="signature-card__text">
+        Geführter Ausritt durch den hauseigenen Wald, mit kurzem Halt an einem ruhigen Platz, einer kleinen Geschichte, dann zurück. Für Kinder ab 7 mit Reiterfahrung. Knüpft an den „Sonnwies Forest" als Kraftplatz an, der bereits in der Hotel-Erzählung verankert ist.
+      </p>
+    </div>
+
+    <div class="signature-card">
+      <svg class="signature-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 22h22"/>
+        <path d="M9 22a7 7 0 0114 0"/>
+        <path d="M16 8v3"/>
+        <path d="M8 11l2 2"/>
+        <path d="M24 11l-2 2"/>
+        <path d="M3 18h2"/>
+        <path d="M27 18h2"/>
+        <path d="M5 26h22"/>
+      </svg>
+      <div class="signature-card__cat">Hof</div>
+      <h3 class="signature-card__title"><em>Pferd</em><br>&amp; Frühstück</h3>
+      <p class="signature-card__text">
+        Frühe Morgenstunde im Stall, gemeinsam füttern und ausmisten mit dem Bauer-Team, danach Bauernfrühstück in der Reiterlounge. Niedrige Schwelle, hoher Erlebniswert, perfekter Familien-Touchpoint. Lässt sich mit dem Erlebnisbauernhof-Ablauf verknüpfen.
+      </p>
+    </div>
+
+    <div class="signature-card">
+      <svg class="signature-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 4l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>
+      </svg>
+      <div class="signature-card__cat">Magie</div>
+      <h3 class="signature-card__title"><em>Sterne</em><br>&amp; Pferde</h3>
+      <p class="signature-card__text">
+        Saisonal im Sommer: Abendritt zur blauen Stunde, danach Decken auf der Wiese, kurze Tier- und Sterngeschichte, warmer Tee. Für Familien mit Kindern ab acht. Premium-Erlebnis, das auch fotogen ist — wichtig für die Bildwelt des Hauses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAISONEN ===== -->
+<section class="page page--ink">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>V · Ganzjährigkeit</span>
+  </div>
+
+  <div class="chapter-mark">
+    <span class="chapter-mark__num" style="color: var(--gold);">V</span>
+    <span class="chapter-mark__label" style="color: rgba(250,246,239,0.6);">Ganzjährig im Rhythmus der Berge</span>
+  </div>
+
+  <h2 class="h1">
+    Vier Jahreszeiten,<br>
+    <em>vier Programme.</em>
+  </h2>
+
+  <p class="lede" style="color: rgba(250,246,239,0.78);">
+    Hotel und Tier brauchen Saisons. Das Reitprogramm passt sich dem Rhythmus der Dolomiten an — nicht nur in Inhalt, sondern auch im Wohlbefinden der Pferde.
+  </p>
+
+  <div class="seasons">
+    <div class="season">
+      <svg class="season__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 28V14"/>
+        <path d="M16 14C13 14 11 12 11 9c3 0 5 2 5 5z"/>
+        <path d="M16 14c3 0 5-2 5-5-3 0-5 2-5 5z"/>
+        <path d="M16 18c-2 0-4-1-4-3 2 0 4 1 4 3z"/>
+        <path d="M16 18c2 0 4-1 4-3-2 0-4 1-4 3z"/>
+      </svg>
+      <h3 class="season__name">Frühling</h3>
+      <p class="season__text">
+        Sanfter Start nach Winterpause der Pferde. Fokus auf Bodenarbeit, kurze Hallenstunden, erste Ausritte. Kinder erleben den Frühling auf dem Hof — passt zu „Sonnwies Spring".
+      </p>
+    </div>
+    <div class="season">
+      <svg class="season__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="16" r="5"/>
+        <path d="M16 4v3"/>
+        <path d="M16 25v3"/>
+        <path d="M4 16h3"/>
+        <path d="M25 16h3"/>
+        <path d="M7.5 7.5l2 2"/>
+        <path d="M22.5 22.5l2 2"/>
+        <path d="M7.5 24.5l2-2"/>
+        <path d="M22.5 9.5l2-2"/>
+      </svg>
+      <h3 class="season__name">Sommer</h3>
+      <p class="season__text">
+        Hauptsaison. Volles Programm, Ausritte, „Sterne &amp; Pferde", Frühreiten. Pferde sind viel auf der Weide — für Kinder ein Erlebnis, sie morgens „abzuholen".
+      </p>
+    </div>
+    <div class="season">
+      <svg class="season__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 6c4 0 7 3 7 7v2c0 4-3 7-7 7-1 0-2 0-3-1 0-4 0-8 3-15z"/>
+        <path d="M10 6c-3 7-3 11-3 15"/>
+        <path d="M7 21l-3 6"/>
+      </svg>
+      <h3 class="season__name">Herbst</h3>
+      <p class="season__text">
+        Goldener Herbst der Dolomiten. Wald-Ritte, Bodenarbeit-Workshops, Achtsamkeitsangebote. Pferdegestütztes Coaching besonders gut platzierbar.
+      </p>
+    </div>
+    <div class="season">
+      <svg class="season__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 4v24"/>
+        <path d="M4 16h24"/>
+        <path d="M7 7l18 18"/>
+        <path d="M25 7L7 25"/>
+        <path d="M13 7l3 3 3-3"/>
+        <path d="M13 25l3-3 3 3"/>
+        <path d="M7 13l3 3-3 3"/>
+        <path d="M25 13l-3 3 3 3"/>
+      </svg>
+      <h3 class="season__name">Winter</h3>
+      <p class="season__text">
+        Reduziertes, aber präsentes Angebot. Hallenstunden, Pferde-Sprechstunden in der Lounge, Putz-Workshops. Optional: Ponyführen im Schnee. Im Einklang mit dem Skilift am Hotel.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABSCHLUSS ===== -->
+<section class="page page--cream">
+  <div class="page-frame">
+    <span>Hotel Sonnwies — Reitkonzept</span>
+    <span>VI · Schluss</span>
+  </div>
+
+  <div class="closing">
+    <div class="ornament"></div>
+
+    <p class="closing__quote">
+      „Das Reitprogramm soll sein, was das ganze Sonnwies ist:<br>
+      <em>ein Ort, an dem aus Tagen Erinnerungen werden.</em><br>
+      Das Pferd schenkt sie."
+    </p>
+
+    <div class="ornament"></div>
+  </div>
+</section>
+
+</body>
+</html>
